@@ -1,4 +1,4 @@
-package bqtrung.demospring.repository.impl;
+package bqtrung.demospring.impl;
 
 @FunctionalInterface
 public interface FuntionalInterfaceTest2 extends FuntionalInterfaceTest, FuntionalInterfaceTest1  {

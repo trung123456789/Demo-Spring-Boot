@@ -1,7 +1,7 @@
-package bqtrung.demospring.repository.impl;
+package bqtrung.demospring.impl;
 
 @FunctionalInterface
-public interface FuntionalInterfaceTest {
+public interface FuntionalInterfaceTest1 {
 	// Functional Interface only one Abstract method and must be one method :)
 	public void sayHello(String helloMessage);
 	
