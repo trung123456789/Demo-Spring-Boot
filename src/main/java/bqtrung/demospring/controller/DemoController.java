@@ -15,15 +15,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import bqtrung.demospring.exception.UserNotFoundException;
 import bqtrung.demospring.model.User;
 import bqtrung.demospring.repository.impl.DemoRepository;
 
+/**
+ * Classname: DemoController
+ *
+ * Version information
+ * @author Trung Bui
+ * Date: 
+ */
 @RestController
 @RequestMapping("/api/demo")
 public class DemoController {
 
 	@Autowired
-	DemoRepository demoRepository;
+	public DemoRepository demoRepository;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@GetMapping("/users")
@@ -36,17 +44,23 @@ public class DemoController {
 	}
 
 	@RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
-	public ResponseEntity<User> getUsersById(@PathVariable(value = "id") Integer userId) {
+	public ResponseEntity<User> getUsersById(@PathVariable(value = "id") Integer userId)
+	{
 		// Type 1:
 		// User user = demoRepository.findById(userId).orElse(null);
 		// Type 2:
 		User user = demoRepository.findByUserId(userId);
 		if (user == null) {
-			return ResponseEntity.notFound().build();
+			throw new UserNotFoundException("id-" + userId);
 		}
 		return ResponseEntity.ok(user);
 	}
 
+//  @ExceptionHandler({CarNotFoundException.class})
+//  public void handleCarException(CarNotFoundException e) {
+//      System.out.println(e.getMessage());
+//  }
+	
 	@RequestMapping(path = "/pusers", method = RequestMethod.POST)
 	@ResponseBody
 	public User createUser(@Valid @RequestBody User user) {

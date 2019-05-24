@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import bqtrung.demospring.model.User;
 
+/**
+ * @author bqtrung
+ * 
+ * Interfacename: DemoRepository
+ * 
+ */
 @Repository
 public interface DemoRepository extends JpaRepository<User, Integer> {
 	@Query("SELECT e FROM User e")
